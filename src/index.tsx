@@ -53,6 +53,7 @@ class LazyVideo extends Component<IProps, IState> {
             'sources',
             'lazy',
             'lazyParent',
+            'noParentAutodetect',
             'lazyOffset',
             'withStatusClasses',
             'statusClassPrefix',
@@ -71,6 +72,7 @@ class LazyVideo extends Component<IProps, IState> {
 
         return props.lazy ? <InView
             parent={props.lazyParent}
+            parentAutodetect={!props.noParentAutodetect}
             offset={props.lazyOffset}
             onChanges={that.onLazyChanges}
             noClasses>{el}</InView> : el;
@@ -138,6 +140,9 @@ export interface IProps extends React.HTMLAttributes<HTMLVideoElement> {
 
     // parent to track visibility from
     lazyParent?: HTMLElement;
+
+    // disable autodetect of closest scrolling parent
+    noParentAutodetect?: boolean;
 
     // offset before image element becomes visible
     lazyOffset?: IOffset;
