@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Component } from 'react';
+import { Component, SyntheticEvent, HTMLProps } from 'react';
 import { omit } from '@tolkam/lib-utils';
 import { classNames } from '@tolkam/lib-utils-ui';
 import InView, { IOffset, IVisibility, TStopFn } from '@tolkam/react-in-view';
@@ -96,7 +95,7 @@ class LazyVideo extends Component<IProps, IState> {
      *
      * @param e
      */
-    protected onElementChanges = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    protected onElementChanges = (e: SyntheticEvent<HTMLVideoElement>) => {
         this.update(e.type === 'loadstart' ? STATUS_LOAD : STATUS_ERROR);
     };
 
@@ -129,9 +128,9 @@ interface IState {
     status: string,
 }
 
-export type ISource = keyof React.HTMLAttributes<HTMLSourceElement>;
+export type ISource = keyof HTMLProps<HTMLSourceElement>;
 
-export interface IProps extends React.HTMLAttributes<HTMLVideoElement> {
+export interface IProps extends HTMLProps<HTMLVideoElement> {
     // element children config
     sources?: ISource[],
 
